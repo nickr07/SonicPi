@@ -1,0 +1,19 @@
+#Challenge F
+use_synth :piano
+num = 21
+sleepTime = 0.5
+
+live_loop :glissando do
+  88.times do
+    play num
+    sleep sleepTime
+    num = num + 1
+  end
+  
+  88.times do
+    num = num - 1
+    play num
+    sleep sleepTime
+  end
+  sleepTime = sleepTime / 2
+end
