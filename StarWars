@@ -53,3 +53,10 @@ play :G4
 sleep 2
 play :D5
 sleep 2
+
+live_loop :drum do
+  with_fx :distortion do
+    sample :elec_mid_snare
+    sleep 8
+  end
+end
