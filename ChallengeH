@@ -1,0 +1,34 @@
+=begin
+
+Functions are great for when the pattern of notes (sleeps) and the actual notes are exactly the same.
+
+Parameterised functions are great for when the pattern of notes is the same but the actual notes are different.
+
+YOUR TASK: Use a parameterised function to optimize the code below.
+
+=end
+
+use_bpm 120
+use_synth :chiplead
+
+define :kombat do |notes|
+  i = 0
+  8.times do
+    play notes[i]
+    i+=1
+    play notes[i]
+    sleep 0.5
+    i+=1
+  end
+end
+
+# MEASURE 1 ---------------------------
+measure [:a4,:a5,:a4,:a5,:c5,:c6,:a4,:a5,:d5,:d6,:a4,:a5,:e5,:e6]
+# MEASURE 2 ---------------------------
+measure [:a4,:a5,:a4,:a5,:c5,:c6,:a4,:a5,:d5,:d6,:a4,:a5,:e5,:e6,:d5,:d6]
+# MEASURE 3 ---------------------------
+measure [:c5,:c6,:c5,:c6,:e5,:e6,:c5,:c6,:g5,:g6,:c4,:c5,:e5,:e6,:c4,:c5]
+# MEASURE 3 ---------------------------
+measure [:g4,:g5,:g4,:g5,:b4,:b5,:g4,:g5,:c5,:c6,:g4,:g5,:d5,:d6,:c5,:c6]
+# MEASURE 4 ---------------------------
+measure [:f4,:f5,:f4,:f5,:a4,:a5,:f4,:f5,:c5,:c6,:f4,:f5,:c5,:c6,:b4,:b5]
