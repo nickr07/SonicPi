@@ -1,9 +1,17 @@
 #Minecraft
-creeper = "C:/Users/nicholas_ramirez/Downloads/Minecraft Creeper Sound sSSSsss BOOM!.wav"
-sample creeper, amp: 50
+creeper = "C:/Users/nicholas_ramirez/Downloads/Minecraft-Creeper-Sound-sSSSsss-BOOM_.wav"
+#you can break your sample up into 4 parts (or as many as you want)
+sample creeper, start: 0, finish: 0.25, amp: 1
+sleep 7/4
+sample creeper, start: 0.25, finish: 0.50, amp: 4
+sleep 7/4
+sample creeper, start: 0.50, finish: 0.75, amp: 8
+sleep 7/4
+sample creeper, start: 0.75, finish: 1, amp: 12
+sleep 7/4
 
 use_bpm = 155
-use_synth :tb303
+use_synth :piano
 define :main_melody do
   
   
@@ -65,7 +73,6 @@ define :main_melody do
 end
 
 
-  live_loop :main do
-    main_melody
-  end
-  
+live_loop :main do
+  main_melody
+end
