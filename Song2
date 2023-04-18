@@ -1,9 +1,12 @@
-use_bpm = 135
+#Minecraft
+creeper = "C:/Users/nicholas_ramirez/Downloads/Minecraft Creeper Sound sSSSsss BOOM!.wav"
+sample creeper, amp: 50
+
+use_bpm = 155
 use_synth :tb303
-
-
-
 define :main_melody do
+  
+  
   #Measure 1
   play:fs4
   sleep 2
@@ -44,6 +47,8 @@ define :main_melody do
   play:fs4
   sleep 3
   
+  
+  
   #Measure 7
   play:fs4
   sleep 2
@@ -59,8 +64,8 @@ define :main_melody do
   sleep 3
 end
 
-live_loop :main do
-  main_melody
-end
 
-
+  live_loop :main do
+    main_melody
+  end
+  
