@@ -1,36 +1,88 @@
-#Minecraft
-creeper = "C:/Users/nicholas_ramirez/Downloads/Minecraft-Creeper-Sound-sSSSsss-BOOM_.wav"
-sample creeper, start: 0, finish: 0.25, amp: 1
-sleep 7/4
-sample creeper, start: 0.25, finish: 0.50, amp: 2
-sleep 7/4
-sample creeper, start: 0.50, finish: 0.75, amp: 6
-sleep 7/4
-sample creeper, start: 0.75, finish: 1, amp: 10
-sleep 7/4
-
-use_bpm = 155
+main = [ :a2,:cs3,:a3,:b3,:cs4,:b3,:a3,:e3,:d3,:f3,:cs4,:e4,:cs4,:a3]
+use_bpm 74
 use_synth :piano
-
-notes=[:fs4,:es4,:ds4,:ds4,:fs4,:fs4,:es4,:ds4,:ds4,:cs4,:fs4,:cs4,:ds4,:ds4,:fs4,:fs4,:es4,:ds4,:fs4,:cs4]
-sleeps=[2,1,1,3,2,1,1,1,5,1,1,1,3,2,1,1,1,3]
-
-define :main_melody do
-  i=0
-  18.times do
-    play notes[i]
-    sleep sleeps[i]
-    i = i+1
+x=0
+y=0
+define :mainnotes do
+  live_loop :mn do
+    10.times do
+      14.times do
+        play main[x]
+        sleep 0.5
+        x=x+1
+      end
+      x=0
+      sleep 1
+    end
+    stop
   end
-  
-  notes
-  play:a4
-  play:a5
-  play:g6
-  play:e2
-  play:g5
+end
+define :main_melody do |a,b,c,d,e,f,g,h,i|
+  play a,sustain: 2,amp:3
+  sleep 3
+  play b,amp:3
+  sleep 1
+  play c,sustain: 2,amp:3
+  sleep 3
+  play d,amp:3
+  sleep 0.5
+  play e,amp:3
+  sleep 0.5
+  play f,amp:3
+  sleep 3
+  play g,amp:3
+  sleep 0.5
+  play h,amp:3
+  sleep 1
+  play i,amp:3
+  sleep 3.5 ######
+end
+define :synths do
+  live_loop :syn do
+    use_synth :blade
+    2.times do
+      play :gs4,sustain: 3.5
+      sleep 4
+      play :fs4,sustain: 3.5
+      sleep 4
+      play :gs4,sustain: 2.5
+      sleep 3
+      play :b4
+      sleep 0.5
+      play :cs5
+      sleep 1
+      play :fs4
+      sleep 3.5
+    end
+    stop
+  end
+end
+define :drummup do
+  y = 0
+  16.times do
+    sample :drum_snare_hard,amp:y
+    sleep 0.25
+    y = y + 0.05
+  end
+  16.times do
+    sample :drum_snare_hard,amp:y
+    sleep 0.25
+    y = y - 0.05
+  end
 end
 
-live_loop :main do
-  main_melody
+mainnotes
+sleep 16
+main_melody :gs4, :a4, :fs4, :e4, :fs4, :gs4, :b4, :cs5, :f4
+main_melody :gs3, :a3, :fs3, :e3, :fs3, :gs3, :b3, :cs4, :f3
+synths
+live_loop :melodyplay do
+  1.times do
+    main_melody :gs4, :a4, :fs4, :e4, :fs4, :gs4, :b4, :cs5, :f4
+  end
+  stop
 end
+sleep 8
+drummup
+sleep 2
+main_melody :gs3, :a3, :fs3, :e3, :fs3, :gs3, :b3, :cs4, :f3
