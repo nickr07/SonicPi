@@ -1,7 +1,8 @@
 #Star Wars
+sleeps = [2,0.5,0.5,2,2,1]
+x = 0
 use_bpm 250
 use_synth :supersaw
-
 play :D4
 sleep 4/3
 play :D4
@@ -13,50 +14,119 @@ play :G4
 sleep 1
 play :D5
 sleep 1
-
-play :C5
-sleep 1/3
-play :B4
-sleep 1/3
-play :A4
-
-play :G5
-sleep 2
-
-play :C5
-sleep 4/3
-play :B4
-sleep 4/3
-play :A4
-
-play :G5
-sleep 2
-
-play :D5
-sleep 1
-
-play :C5
-sleep 4/3
-play :B4
-sleep 4/3
-play :C5
-sleep 4/3
-play :A4
-sleep 1
-sleep 1
-play :D4
-sleep 0.5
-play :D4
-sleep 0.5
-
-play :G4
-sleep 2
-play :D5
-sleep 2
-
-live_loop :drum do
-  with_fx :distortion do
-    sample :elec_mid_snare
-    sleep 8
+define :main do
+  live_loop :star do
+    16.times do
+      play :C5
+      sleep 1/3
+      play :B4
+      sleep 1/3
+      play :A4
+      
+      play :G5
+      sleep 2
+      
+      play :C5
+      sleep 4/3
+      play :B4
+      sleep 4/3
+      play :A4
+      
+      play :G5
+      sleep 2
+      
+      play :D5
+      sleep 1
+      
+      play :C5
+      sleep 4/3
+      play :B4
+      sleep 4/3
+      play :C5
+      sleep 4/3
+      play :A4
+      sleep 1
+      sleep 1
+      play :D4
+      sleep 0.5
+      play :D4
+      sleep 0.5
+      
+      play :G4
+      sleep 2
+      play :D5
+      sleep 1
+    end
+    stop
   end
 end
+define :main2 do |a|
+  1.times do
+    play :d5,sustain:4,amp:0.5
+    sleep 4
+    play :c5,sustain:4,amp:0.5
+    sleep 4
+    play :d5,sustain:2,amp:0.5
+    sleep 2
+    play a,sustain:1,amp:0.5
+    sleep 1
+    play :d5,sustain:1,amp:0.5
+    sleep 5
+  end
+end
+define :drums do
+  y = 0
+  16.times do
+    6.times do
+      sample :drum_snare_hard,amp:y
+      sleep sleeps [x]
+      x = x + 1
+      y = y + 0.3
+    end
+    x=0
+    6.times do
+      sample :drum_snare_hard,amp:y
+      sleep sleeps [x]
+      x = x + 1
+      y = y - 0.3
+    end
+    x=0
+    y = 0
+  end
+  stop
+end
+define :pianos do
+  live_loop :pian do
+    use_synth :piano
+    16.times do
+      play :d5,amp:2
+      sleep 8
+      play :d5,amp:2
+      sleep 2
+      play :b4,amp:2
+      sleep 1
+      play :d5,amp:2
+      sleep 5
+    end
+    stop
+  end
+end
+main
+pianos
+main2:b4
+main2:b4
+live_loop :drumsplay do
+  drums
+end
+main2:b4
+main2:d5
+sleep 16
+main2:b4
+main2:b4
+main2:b4
+main2:d5
+sleep 32
+main2:b4
+main2:b4
+main2:b4
+main2:d5
