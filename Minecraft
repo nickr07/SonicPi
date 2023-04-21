@@ -1,3 +1,14 @@
+#Minecraft
+creeper = "C:/Users/nicholas_ramirez/Downloads/Minecraft-Creeper-Sound-sSSSsss-BOOM_.wav"
+sample creeper, start: 0, finish: 0.25, amp: 1
+sleep 7/4
+sample creeper, start: 0.25, finish: 0.50, amp: 2
+sleep 7/4
+sample creeper, start: 0.50, finish: 0.75, amp: 6
+sleep 7/4
+sample creeper, start: 0.75, finish: 1, amp: 10
+sleep 7/4
+
 main = [ :a2,:cs3,:a3,:b3,:cs4,:b3,:a3,:e3,:d3,:f3,:cs4,:e4,:cs4,:a3]
 use_bpm 74
 use_synth :piano
@@ -86,3 +97,5 @@ sleep 8
 drummup
 sleep 2
 main_melody :gs3, :a3, :fs3, :e3, :fs3, :gs3, :b3, :cs4, :f3
+
+sample "C:/Users/nicholas_ramirez/Downloads/Minecraft-Villager-Sound-Effect.wav",beat_stretch:6, amp:4
